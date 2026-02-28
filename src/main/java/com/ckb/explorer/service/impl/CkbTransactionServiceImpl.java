@@ -384,6 +384,9 @@ public class CkbTransactionServiceImpl extends ServiceImpl<CkbTransactionMapper,
     String[] sortParts = sort.split("\\.", 2);
     String orderBy = sortParts[0];
     String ascOrDesc = sortParts.length > 1 ? sortParts[1].toLowerCase() : "desc";
+    if (!"asc".equals(ascOrDesc) && !"desc".equals(ascOrDesc)) {
+      ascOrDesc = "desc";
+    }
 
     orderBy = switch (orderBy) {
       case "time" -> "block_timestamp";
@@ -522,6 +525,9 @@ public class CkbTransactionServiceImpl extends ServiceImpl<CkbTransactionMapper,
     String[] sortParts = req.getSort().split("\\.", 2);
     String orderBy = sortParts[0];
     String ascOrDesc = sortParts.length > 1 ? sortParts[1].toLowerCase() : "desc";
+    if (!"asc".equals(ascOrDesc) && !"desc".equals(ascOrDesc)) {
+      ascOrDesc = "desc";
+    }
 
     orderBy = switch (orderBy) {
       case "time" -> "block_timestamp";

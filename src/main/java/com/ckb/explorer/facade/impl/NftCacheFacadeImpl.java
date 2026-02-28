@@ -111,6 +111,9 @@ public class NftCacheFacadeImpl implements INftCacheFacade {
             orderBy = "block_timestamp";
         }
         String ascOrDesc = sortParts.length > 1 ? sortParts[1].toLowerCase() : "desc";
+        if (!"asc".equals(ascOrDesc) && !"desc".equals(ascOrDesc)) {
+            ascOrDesc = "desc";
+        }
         Long oneDayAgo = System.currentTimeMillis() - TimeUnit.HOURS.toMillis(24);
         List<String> tags = null;
         collectionsPage = dobExtendMapper.dobPage(collectionsPage, oneDayAgo, orderBy, ascOrDesc, req.getTags(),NftType.getCodeByValueAllowNull(req.getStandard()));
@@ -250,6 +253,9 @@ public class NftCacheFacadeImpl implements INftCacheFacade {
             orderBy = "holders_count";
         }
         String ascOrDesc = sortParts.length > 1 ? sortParts[1].toLowerCase() : "desc";
+        if (!"asc".equals(ascOrDesc) && !"desc".equals(ascOrDesc)) {
+            ascOrDesc = "desc";
+        }
         Page<NftHolderDto> nftHolderDtoPage = new Page<>(req.getPage(), req.getPageSize());
         Long lockScriptId = null;
         if (org.springframework.util.StringUtils.hasLength(req.getAddressHash())) {
